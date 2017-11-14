@@ -28,12 +28,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void validate(String userEmail, String userPassword) {
-        if ((userEmail.contains("@")) && (userPassword.length() > 4)) {
+        if ((userEmail.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) && (userPassword.length() > 4)) {
             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
             startActivity(intent);
         }
         else {
-            if (!userEmail.contains("@")) {
+            if (!userEmail.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) {
                 Toast.makeText(getApplicationContext(), "Invalid email address", Toast.LENGTH_SHORT).show();
             } else if (userPassword.length() <= 4) {
                 Toast.makeText(getApplicationContext(), "Too short password", Toast.LENGTH_SHORT).show();
