@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +31,13 @@ public class MainActivity extends AppCompatActivity {
         if ((userEmail.contains("@")) && (userPassword.length() > 4)) {
             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
             startActivity(intent);
+        }
+        else {
+            if (!userEmail.contains("@")) {
+                Toast.makeText(getApplicationContext(), "Invalid email address", Toast.LENGTH_SHORT).show();
+            } else if (userPassword.length() <= 4) {
+                Toast.makeText(getApplicationContext(), "Too short password", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }
