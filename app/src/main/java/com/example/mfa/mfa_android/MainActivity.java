@@ -15,29 +15,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final EditText Email = (EditText)findViewById(R.id.email);
-        final EditText Password = (EditText)findViewById(R.id.password);
-        Button Login = (Button)findViewById(R.id.btnLogin);
+        final EditText Username = (EditText) findViewById(R.id.username);
+        final EditText Password = (EditText) findViewById(R.id.password);
+        Button Login = (Button) findViewById(R.id.btnLogin);
 
         Login.setOnClickListener(new View.OnClickListener() {
             //@Override
             public void onClick(View view) {
-                validate(Email.getText().toString(), Password.getText().toString());
+                validate(Username.getText().toString(), Password.getText().toString());
             }
         });
     }
 
     private void validate(String userEmail, String userPassword) {
-        if ((userEmail.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) && (userPassword.length() > 4)) {
+        if (userPassword.length() > 4) {
             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
             startActivity(intent);
-        }
-        else {
-            if (!userEmail.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) {
-                Toast.makeText(getApplicationContext(), "Invalid email address", Toast.LENGTH_SHORT).show();
-            } else if (userPassword.length() <= 4) {
-                Toast.makeText(getApplicationContext(), "Too short password", Toast.LENGTH_SHORT).show();
-            }
+        } else if (userPassword.length() <= 4) {
+            Toast.makeText(getApplicationContext(), "Too short password", Toast.LENGTH_SHORT).show();
         }
     }
+
 }
